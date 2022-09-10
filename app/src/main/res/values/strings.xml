@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="message_from">Kimden: %1$s</string>
+    <string name="message_to">Kime: %1$s</string>
+</resources>

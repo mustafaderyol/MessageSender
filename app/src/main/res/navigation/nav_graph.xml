@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/messageRuleListFragment">
+
+    <fragment
+        android:id="@+id/messageRuleListFragment"
+        android:name="com.example.myapplication.messagerulelist.MessageRuleListFragment"
+        android:label="MessageRuleListFragment"
+        tools:layout="@layout/message_rule_list_fragment" >
+        <action
+            android:id="@+id/action_messageRuleListFragment_to_createMessageRuleFragment"
+            app:destination="@id/createMessageRuleFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/createMessageRuleFragment"
+        android:name="com.example.myapplication.createmessagerule.CreateMessageRuleFragment"
+        android:label="CreateMessageRuleFragment"
+        tools:layout="@layout/create_message_rule_fragment" />
+
+</navigation>
