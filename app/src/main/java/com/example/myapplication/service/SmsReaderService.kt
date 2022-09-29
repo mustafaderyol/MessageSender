@@ -42,13 +42,14 @@ class SmsReaderService : BroadcastReceiver() {
 
         database.getBySender(sender).forEach {
             Toast.makeText(context, "found rule : $it", Toast.LENGTH_SHORT).show()
-            val smsManager = context.getSystemService(SmsManager::class.java)
+            val smsManager = SmsManager.getDefault();
+               // context.getSystemService(SmsManager::class.java)
             smsManager.sendMultipartTextMessage(
                 "0" + it.to,
                 null,
                 messages,
                 null,
-                null,
+                null
             )
         }
     }
