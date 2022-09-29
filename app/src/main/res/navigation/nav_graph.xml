@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/messageRuleListFragment">
+    app:startDestination="@id/lockFragment">
 
     <fragment
         android:id="@+id/messageRuleListFragment"
@@ -20,5 +20,15 @@
         android:name="com.example.myapplication.createmessagerule.CreateMessageRuleFragment"
         android:label="CreateMessageRuleFragment"
         tools:layout="@layout/create_message_rule_fragment" />
+    <fragment
+        android:id="@+id/lockFragment"
+        android:name="com.example.myapplication.lock.LockFragment"
+        android:label="LockFragment"
+        tools:layout="@layout/lock_fragment">
+
+        <action
+            android:id="@+id/action_lockFragment_to_messageRuleListFragment"
+            app:destination="@id/messageRuleListFragment" />
+    </fragment>
 
 </navigation>

@@ -5,6 +5,7 @@
       <map>
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25944224924281023" />
         <entry key="app/src/main/res/layout/create_message_rule_fragment.xml" value="0.3514933268229167" />
+        <entry key="app/src/main/res/layout/lock_fragment.xml" value="0.20729166666666668" />
         <entry key="app/src/main/res/layout/main_activity.xml" value="0.16145833333333334" />
         <entry key="app/src/main/res/layout/message_rule_item.xml" value="0.33229166666666665" />
         <entry key="app/src/main/res/layout/message_rule_list_fragment.xml" value="0.16041666666666668" />
