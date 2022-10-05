@@ -3,9 +3,9 @@ package com.example.myapplication.service
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.telephony.SmsManager
 import android.telephony.SmsMessage
-import android.widget.Toast
 import androidx.room.Room
 import com.example.myapplication.database.MessageRuleDatabase
 import com.example.myapplication.extensions.numberFormat
@@ -14,8 +14,6 @@ import com.example.myapplication.extensions.slug
 class SmsReaderService : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
-        Toast.makeText(context, "onReceive", Toast.LENGTH_SHORT).show()
-
         intent.extras?.let { data ->
             val pdus = data["pdus"] as? Array<Any>?
 
@@ -26,7 +24,6 @@ class SmsReaderService : BroadcastReceiver() {
                 sender = smsMessage.displayOriginatingAddress.slug().numberFormat()
                 messageList.add(smsMessage.messageBody)
             }
-            Toast.makeText(context, "sender : $sender", Toast.LENGTH_SHORT).show()
             sender?.let {
                 sendMessage(context, sender, messageList)
             }
@@ -40,17 +37,21 @@ class SmsReaderService : BroadcastReceiver() {
                 .build()
                 .messageRuleItemDao()
 
-        database.getBySender(sender).forEach {
-            Toast.makeText(context, "found rule : $it", Toast.LENGTH_SHORT).show()
-            val smsManager = SmsManager.getDefault();
-               // context.getSystemService(SmsManager::class.java)
-            smsManager.sendMultipartTextMessage(
-                "0" + it.to,
-                null,
-                messages,
-                null,
-                null
-            )
+        database.getBySender(sender).forEach { sndr ->
+            val smsManager: SmsManager = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                context.getSystemService(SmsManager::class.java)
+            } else {
+                SmsManager.getDefault()
+            }
+            messages.forEach { message->
+                smsManager.sendTextMessage(
+                    "0" + sndr.to,
+                    null,
+                    message,
+                    null,
+                    null
+                )
+            }
         }
     }
 }
